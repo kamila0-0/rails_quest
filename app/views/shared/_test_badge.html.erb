@@ -1,0 +1,11 @@
+        <%# ── Test badge ── %>
+        <% if results.any? %>
+          <div class="text-xs flex gap-2 items-center">
+            <span class="<%= results['failures'].to_i == 0 ? 'text-green-400' : 'text-red-400' %>">
+              ● <%= t("quests.index.tests_passed", passed: results["passed"].to_i, total: results["total"].to_i) %>
+            </span>
+            <% if results['run_at'] %>
+              <span class="text-gray-600">(<%= Time.parse(results['run_at']).strftime('%H:%M') %>)</span>
+            <% end %>
+          </div>
+        <% end %>

@@ -1,0 +1,54 @@
+{
+  "name": "Rails Quest — интерактивный учебник",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+
+  // Пробрасываем порт Rails-сервера
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": {
+      "label": "Rails",
+      "onAutoForward": "openBrowser"
+    }
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        // Ruby / Rails
+        "Shopify.ruby-lsp",
+        "castwide.solargraph",
+        "kaiwood.endwise",
+        "bung87.rails",
+        "bung87.vscode-gemfile",
+        // ERB / HTML
+        "formulahendry.auto-rename-tag",
+        "wholroyd.jinja",
+        // Git
+        "eamodio.gitlens",
+        // SQLite viewer
+        "qwtel.sqlite-viewer"
+      ],
+      "settings": {
+        "editor.tabSize": 2,
+        "editor.formatOnSave": true,
+        "files.trimTrailingWhitespace": true,
+        "files.insertFinalNewline": true,
+        "[ruby]": {
+          "editor.defaultFormatter": "Shopify.ruby-lsp"
+        },
+        "rubyLsp.rubyVersionManager": { "identifier": "none" },
+        "solargraph.diagnostics": true,
+        "solargraph.formatting": false
+      }
+    }
+  },
+  "remoteUser": "root",
+
+  "mounts": [
+    // Кешируем гемы между пересборками
+    "source=rails_quest_bundle,target=/usr/local/bundle,type=volume"
+  ]
+}

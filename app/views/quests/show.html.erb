@@ -1,0 +1,80 @@
+<% meta = @quest.meta %>
+<% content_for :title, "#{meta[:module_name]} — RailsOS" %>
+
+<div class="min-h-screen bg-gray-950 text-gray-100 font-mono">
+
+  <%# ── Header ── %>
+  <header class="border-b border-cyan-800 px-6 py-4 flex items-center justify-between">
+    <div>
+      <%= link_to "← Терминал", root_path, class: "text-cyan-500 hover:text-cyan-300 text-sm" %>
+      <h1 class="text-xl font-bold text-white mt-1">
+        Квест <%= @quest.quest_number %> //
+        <span class="text-cyan-400"><%= meta[:module_name] %></span>
+      </h1>
+    </div>
+    <div class="flex items-center gap-4">
+      <div class="text-xs text-gray-500 text-right">
+      Статус:
+      <span class="<%= @quest.accepted? ? 'text-green-400' : 'text-cyan-400' %>">
+        <%= @quest.status.upcase %>
+      </span>
+    </div>
+    <%= render "shared/language_switcher" %>
+    </div>
+
+
+  </header>
+
+  <main class="max-w-3xl mx-auto px-6 py-10">
+
+    <%# ── Module badge ── %>
+    <div class="mb-6 flex items-center gap-3">
+      <span class="text-4xl">⚡</span>
+      <div>
+        <div class="text-xs tracking-widest text-gray-500 uppercase">Повреждённый модуль</div>
+        <div class="text-2xl font-bold text-white"><%= meta[:title] %></div>
+        <div class="text-sm text-red-400 italic mt-1"><%= meta[:symptom] %></div>
+      </div>
+    </div>
+
+
+    <%# ── Actions ── %>
+    <div class="flex gap-4 mb-8">
+        <%= link_to "← Назад в лобби", root_path,
+          class: "px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded text-sm transition" %>
+      </div>
+    <% if @quest.accepted? %>
+      <div class="text-green-400 text-lg font-semibold">
+        ✅ Модуль восстановлен. Хорошая работа, агент.
+      </div>
+    <% end %>
+
+    <%# ── Briefing ── %>
+    <div class="bg-gray-900 border border-cyan-800 rounded-lg p-6 mb-8">
+      <div class="text-xs text-cyan-600 tracking-widest uppercase mb-3">// ЗАДАНИЕ //</div>
+      <pre class="whitespace-pre-wrap text-sm text-gray-200 leading-relaxed"><%= meta[:briefing] %></pre>
+      <%= render partial: "quests/briefings/#{I18n.locale}/quest_#{@quest.id}" %>
+    </div>
+
+
+
+    <%# ── Test hint ── %>
+    <div class="bg-gray-900 border border-gray-700 rounded-lg p-4 mb-8">
+      <div class="text-xs text-gray-500 uppercase tracking-widest mb-2">Проверка прогресса</div>
+      <code class="text-green-400 text-sm">
+        $ rails quest:check[<%= @quest.quest_number %>]
+      </code>
+      <p class="text-xs text-gray-500 mt-2">
+        Запусти эту команду, чтобы увидеть результаты тестов в терминале, на этой странице и в лобби.
+      </p>
+    </div>
+
+    <div class="rounded-xl border border-green-700/70 bg-green-900/20 p-4 mt-6">
+      <div class="text-xs uppercase tracking-[0.3em] text-green-400 mb-3">Твой прогресс:
+                <%= render partial: "shared/test_badge", locals: {results: @results} %>
+      </div>
+    </div>
+
+
+  </main>
+</div>

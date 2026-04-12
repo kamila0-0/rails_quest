@@ -1,0 +1,107 @@
+# Files in the config/locales directory are used for internationalization and
+# are automatically loaded by Rails. If you want to use locales other than
+# English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t "hello"
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t("hello") %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more about the API, please read the Rails Internationalization guide
+# at https://guides.rubyonrails.org/i18n.html.
+#
+# Be aware that YAML interprets the following case-insensitive strings as
+# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
+# must be quoted to be interpreted as strings. For example:
+#
+#     en:
+#       "yes": yup
+#       enabled: "ON"
+
+en:
+  app:
+    browser_title: "Rails Quests"
+    company: "MMCS SFEDU"
+    brand: "Rails Quests"
+    terminal: "Recovery Terminal"
+    alert: "NULL THREAT ACTIVE"
+    footer: "MMCS SFEDU 2026."
+  locales:
+    ru: "RU"
+    en: "EN"
+  language_switcher:
+    label: "Language"
+    select: "Select"
+  quests:
+    statuses:
+      locked: "LOCKED"
+      unlocked: "UNLOCKED"
+      accepted: "ACCEPTED"
+    index:
+      intro_html: 'This is an interactive Rails tutorial. It’s styled as a quest to restore the modules of an information system.
+       You need to restore all modules to save the city from collapse. Each module is a quest, and quests must be completed in order.
+        Quests are covered by tests, but after passing all tests you need to show your implementation to the instructor.'
+      module: "Module %{number}"
+      redacted: "???"
+      redacted_long: "????????"
+      tests_passed: "%{passed}/%{total} tests passed"
+      locked_hint: "Finish the previous quest first"
+      restored: "Module restored ✓"
+      open: "Open quest →"
+    show:
+      page_title: "%{module_name} — Rails Quests"
+      locked_alert: "This module is locked."
+      back_to_terminal: "← Terminal"
+      quest_heading: "Quest %{number}"
+      status_label: "Status"
+      damaged_module: "Damaged module"
+      assignment: "// MISSION //"
+      back_to_lobby: "← Back to lobby"
+      restored: "✅ Module restored. Nice work, agent."
+    meta:
+      1:
+        module_name: "db:broken"
+        title: "Restore the database"
+        symptom: "The operational database has collapsed — we have no information about agents, their skills, and missions"
+    briefings:
+      1:
+        intro: "Agent, welcome to AgentArchive — the central archive of the operations division. After NULL's strike the system forgot which agents exist, what skills they have, and which missions they are assigned to."
+        domain_title: "Domain model"
+        domain_items:
+          - "Agents — the system's field agents"
+          - "Skills — capabilities of agents"
+          - "Missions — tasks assigned to agents"
+        steps_title: "Recovery steps"
+        steps:
+          - "Create the Agent model and migration with codename:string, level:integer, active:boolean."
+          - "Add the Skill model with name:string and category:string."
+          - "Add Mission and AgentSkill models."
+          - "Configure associations: an agent has many missions; an agent has many skills through a join table; a skill can belong to many agents."
+          - "Add validations: unique codename, level between 1 and 10, and mission status in [assigned, in_progress, completed]."
+          - "Enforce DB constraints: foreign keys, unique indexes, and a composite index on [agent_id, skill_id]."
+          - "When ready, run tests: bundle exec rails quest:check[1]"
+      2:
+        module_name: "StatsCollector"
+        title: "Restore data analytics"
+        symptom: "Data analytics tools are damaged"
+      3:
+        module_name: "AccessGate"
+        title: "Restore AccessGate"
+        symptom: "Every terminal is exposed — NULL is inside"
+      4:
+        module_name: "ControlPanel"
+        title: "Restore ControlPanel"
+        symptom: "Control panels no longer react to input"
+      5:
+        module_name: "LiveFeed"
+        title: "Restore LiveFeed"
+        symptom: "Monitoring is frozen — only static snapshots remain"

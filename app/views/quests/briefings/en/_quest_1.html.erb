@@ -1,0 +1,54 @@
+<section class="space-y-4">
+  <p>
+    Agent, welcome to <span class="text-cyan-300 font-semibold">AgentArchive</span>, the central archive of the operations unit.
+    After NULL's attack, the system no longer knows which agents exist, which skills they possess, or which missions they are assigned to.
+  </p>
+
+  <div class="rounded-xl border border-cyan-900/70 bg-cyan-950/20 p-4">
+    <div class="text-xs uppercase tracking-[0.3em] text-cyan-500 mb-3">Domain model</div>
+    <ul class="list-disc space-y-2 pl-5 text-gray-200 marker:text-cyan-400">
+      <li><span class="font-semibold text-white">Agents</span> — operational actors in the system</li>
+      <li><span class="font-semibold text-white">Skills</span> — capabilities owned by agents</li>
+      <li><span class="font-semibold text-white">Missions</span> — assignments linked to agents</li>
+    </ul>
+  </div>
+
+  <div>
+    <div class="text-xs uppercase tracking-[0.3em] text-gray-500 mb-3">Recovery steps</div>
+    <ol class="list-decimal space-y-3 pl-5 marker:text-cyan-400">
+      <li>
+        Create the <code class="rounded bg-gray-950 px-1.5 py-0.5 text-green-300">Agent</code> model and a migration with
+        <code class="rounded bg-gray-950 px-1.5 py-0.5 text-green-300">codename:string</code>,
+        <code class="rounded bg-gray-950 px-1.5 py-0.5 text-green-300">level:integer</code>, and
+        <code class="rounded bg-gray-950 px-1.5 py-0.5 text-green-300">active:boolean</code>.
+      </li>
+      <li>
+        Add the <code class="rounded bg-gray-950 px-1.5 py-0.5 text-green-300">Skill</code> model with
+        <code class="rounded bg-gray-950 px-1.5 py-0.5 text-green-300">name:string</code> and
+        <code class="rounded bg-gray-950 px-1.5 py-0.5 text-green-300">category:string</code>.
+      </li>
+      <li>
+        Add <code class="rounded bg-gray-950 px-1.5 py-0.5 text-green-300">Mission</code> and
+        <code class="rounded bg-gray-950 px-1.5 py-0.5 text-green-300">AgentSkill</code>.
+      </li>
+      <li>
+        Configure associations:
+        <ul class="mt-2 list-disc space-y-1 pl-5 marker:text-cyan-400 text-gray-300">
+          <li>an agent has many missions;</li>
+          <li>an agent has many skills through a join table;</li>
+          <li>a skill can belong to many agents.</li>
+        </ul>
+      </li>
+      <li>
+        Add validations for required fields, uniqueness and mission statuses.
+        Agent codenames must be unique, level must be a number between 1 and 10,
+        and mission status may be one of "assigned", "in_progress", or "completed".
+      </li>
+      <li>
+        Protect the schema with database constraints: foreign keys, unique indexes, and a composite index on
+        <code class="rounded bg-gray-950 px-1.5 py-0.5 text-green-300">[agent_id, skill_id]</code>.
+      </li>
+    </ol>
+  </div>
+
+</section>

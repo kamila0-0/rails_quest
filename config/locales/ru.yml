@@ -1,0 +1,76 @@
+ru:
+  app:
+    browser_title: "Rails Quests"
+    company: "MMCS SFEDU"
+    brand: "Rails Quests"
+    terminal: "Recovery Terminal"
+    alert: "NULL THREAT ACTIVE"
+    footer: "MMCS SFEDU 2026."
+  locales:
+    ru: "RU"
+    en: "EN"
+  language_switcher:
+    label: "Язык"
+    select: "Выбери"
+  quests:
+    statuses:
+      locked: "ЗАБЛОКИРОВАН"
+      unlocked: "ДОСТУПЕН"
+      accepted: "ПРИНЯТ"
+    index:
+      intro_html: 'Это интерактивный учебник по Rails. Он оформлен в виде квеста о восстановлении модулей информационной системы. Вам нужно восстановить все модули, чтобы спасти город от коллапса. Каждый модуль — это квест, и квесты нужно выполнять по порядку. Квесты покрыты тестами, но после прохождения всех тестов нужно показать преподавателю реализацию'
+      module: "Модуль %{number}"
+      redacted: "???"
+      redacted_long: "????????"
+      tests_passed: "%{passed}/%{total} тестов пройдено"
+      locked_hint: "Завершите предыдущий квест"
+      restored: "Модуль восстановлен ✓"
+      open: "Открыть задание →"
+    show:
+      page_title: "%{module_name} — RailsOS"
+      locked_alert: "Этот модуль заблокирован."
+      back_to_terminal: "← Терминал"
+      quest_heading: "Квест %{number}"
+      status_label: "Статус"
+      damaged_module: "Повреждённый модуль"
+      assignment: "// ЗАДАНИЕ //"
+      back_to_lobby: "← Назад в лобби"
+      restored: "✅ Модуль восстановлен. Хорошая работа, агент."
+    meta:
+      1:
+        module_name: "db:broken"
+        title: "Восстановление базы данных"
+        symptom: "Оперативная база распалась — мы ничего не знаем об агентах, их навыках и миссиях"
+    briefings:
+      1:
+        intro: "Агент, добро пожаловать в AgentArchive — центральный архив оперативного отдела. После атаки NULL система забыла, какие агенты существуют, какими навыками они владеют и на какие задания назначены."
+        domain_title: "Предметная область"
+        domain_items:
+          - "Agents — оперативные агенты системы"
+          - "Skills — навыки агентов"
+          - "Missions — задания, закреплённые за агентами"
+        steps_title: "Этапы восстановления"
+        steps:
+          - "Создай модель Agent и миграцию с полями codename:string, level:integer, active:boolean."
+          - "Добавь модель Skill с полями name:string и category:string."
+          - "Добавь модели Mission и AgentSkill."
+          - "Настрой ассоциации: у агента много заданий; у агента много навыков; один навык может принадлежать многим агентам."
+          - "Добавь валидации: уникальность codename, level 1..10, status в Mission: assigned|in_progress|completed."
+          - "Защити схему ограничениями БД: внешние ключи, уникальные индексы и составной индекс на [agent_id, skill_id]."
+          - "Чтобы проверить прогресс, запусти"
+      2:
+        module_name: "CitizenStats"
+        title: "Сбор статистики"
+        symptom: "Инструменты обработки данных повреждены"
+      3:
+        module_name: "AccessGate"
+        title: "Восстановление AccessGate"
+        symptom: "Все терминалы без пароля — NULL внутри"
+      4:
+        module_name: "ControlPanel"
+        title: "Восстановление ControlPanel"
+        symptom: "Панели управления не реагируют на ввод"
+      5:
+        module_name: "LiveFeed"
+        title: "Восстановление LiveFeed"
+        symptom: "Мониторинг зависает — только статичные снапшоты"

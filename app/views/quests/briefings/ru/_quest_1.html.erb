@@ -1,0 +1,54 @@
+<section class="space-y-4">
+  <p>
+    Агент, добро пожаловать в <span class="text-cyan-300 font-semibold">AgentArchive</span> — центральный архив оперативного отдела.
+    После атаки NULL система забыла, какие агенты существуют, какими навыками они владеют и на какие задания назначены.
+  </p>
+
+  <div class="rounded-xl border border-cyan-900/70 bg-cyan-950/20 p-4">
+    <div class="text-xs uppercase tracking-[0.3em] text-cyan-500 mb-3">Предметная область</div>
+    <ul class="list-disc space-y-2 pl-5 text-gray-200 marker:text-cyan-400">
+      <li><span class="font-semibold text-white">Agents</span> — оперативные агенты системы</li>
+      <li><span class="font-semibold text-white">Skills</span> — навыки агентов</li>
+      <li><span class="font-semibold text-white">Missions</span> — задания, закреплённые за агентами</li>
+    </ul>
+  </div>
+
+  <div>
+    <div class="text-xs uppercase tracking-[0.3em] text-gray-500 mb-3">Этапы восстановления</div>
+    <ol class="list-decimal space-y-3 pl-5 marker:text-cyan-400">
+      <li>
+        Создай модель <code class="rounded bg-gray-950 px-1.5 py-0.5 text-green-300">Agent</code> и миграцию с полями
+        <code class="rounded bg-gray-950 px-1.5 py-0.5 text-green-300">codename:string</code>,
+        <code class="rounded bg-gray-950 px-1.5 py-0.5 text-green-300">level:integer</code>,
+        <code class="rounded bg-gray-950 px-1.5 py-0.5 text-green-300">active:boolean</code>.
+      </li>
+      <li>
+        Добавь модель <code class="rounded bg-gray-950 px-1.5 py-0.5 text-green-300">Skill</code> с полями
+        <code class="rounded bg-gray-950 px-1.5 py-0.5 text-green-300">name:string</code> и
+        <code class="rounded bg-gray-950 px-1.5 py-0.5 text-green-300">category:string</code>.
+      </li>
+      <li>
+        Добавь модели <code class="rounded bg-gray-950 px-1.5 py-0.5 text-green-300">Mission</code> и
+        <code class="rounded bg-gray-950 px-1.5 py-0.5 text-green-300">AgentSkill</code>.
+      </li>
+      <li>
+        Настрой ассоциации:
+        <ul class="mt-2 list-disc space-y-1 pl-5 marker:text-cyan-400 text-gray-300">
+          <li>у агента много заданий, одна задание всегда выполняет один агент;</li>
+          <li>у агента может быть много навыков;</li>
+          <li>один навык может принадлежать многим агентам.</li>
+        </ul>
+      </li>
+      <li>
+        Добавь валидации для обязательных полей, уникальности и статусов миссии.
+        Кодовые имена агентов должны быть уникальными, уровень должен быть числом от 1 до 10,
+        а статус миссии может быть только "assigned", "in_progress", или "completed".
+      </li>
+      <li>
+        Защити схему ограничениями БД: внешние ключи, уникальные индексы и составной индекс на
+        <code class="rounded bg-gray-950 px-1.5 py-0.5 text-green-300">[agent_id, skill_id]</code>.
+      </li>
+    </ol>
+
+
+</section>
